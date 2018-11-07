@@ -19,5 +19,5 @@ if [ "x${GOVER}" == "x" ]; then
 fi
 
 gimme $GOVER
-echo GOPATH="${GOPATH}"
+echo export GOPATH="${GOPATH}"
 
