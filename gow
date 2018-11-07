@@ -5,7 +5,7 @@
 # but stay under $HOME
 GOPATH=${PWD}
 while [ \! -r "${GOPATH}/.gopath" ]; do
-  if [ "${PWD##${HOME}}" == "${PWD}" ]; then
+  if [[ ${GOPATH} != ${HOME}* ]]; then
     echo "Could not find GOPATH directory. Exiting."
     exit 1
   fi
