@@ -1,0 +1,23 @@
+#!/bin/bash
+# vim: sw=4 sts=4 et ft=bash
+
+# Search for .gopath in all parent directories
+# but stay under $HOME
+GOPATH=${PWD}
+while [ \! -r "${GOPATH}/.gopath" ]; do
+  if [ "${PWD##${HOME}}" == "${PWD}" ]; then
+    echo "Could not find GOPATH directory. Exiting."
+    exit 1
+  fi
+
+  GOPATH=$(dirname "${GOPATH}")
+done
+
+GOVER=$(cat "${GOPATH}/.gopath" | tr -d '[:space:]')
+if [ "x${GOVER}" == "x" ]; then
+  GOVER="stable"
+fi
+
+gimme $GOVER
+echo GOPATH="${GOPATH}"
+
